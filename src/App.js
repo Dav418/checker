@@ -7,15 +7,14 @@ import {v4 as uuid} from 'uuid';
 class App extends Component {
 
   state ={
-
     items :
-  [
+    [
       {id: uuid(),
       desc: "Eat food",
-      weight : 10,
+      weight : 0,
       completed : false,
       additionalItems:[
-        {id:uuid(), desc:"take bread", weight: 1, completed:false},
+        {id:uuid(), desc:"take bread and put it in the toaster", weight: 91, completed:false},
         {id:uuid(), desc:"spread jam", weight: 1, completed:false},
         {id:uuid(), desc:"thank xqc", weight: 1, completed:false}     
       ]
@@ -54,6 +53,26 @@ class App extends Component {
     }
   ]};
 
+  findWeight = id =>{
+    let weight = 0;
+    let copyArr = [...this.state.items];
+    copyArr.forEach(item =>{
+      if (item.id == id){
+        console.log("found item!")
+        console.log(item)
+        item.additionalItems.forEach(adItm =>{
+          weight += adItm.weight;
+        })
+        item.weight = weight;
+      }
+    })
+
+    this.setState({
+      items:[...this.setState.items = copyArr]
+    }) 
+
+  }
+
   markAsCompleted = id =>{
     this.setState({
       items: this.state.items.map(item=>{
@@ -79,7 +98,7 @@ class App extends Component {
   }
 
   delSubItem = id =>{
-    var copyArr = [...this.state.items];
+    let copyArr = [...this.state.items];
     copyArr.forEach(item => {
       var index = item.additionalItems.findIndex( adItm => {
         return adItm.id === id;
@@ -105,7 +124,8 @@ class App extends Component {
               todo={this.state.items}
               markAsCompleted = {this.markAsCompleted}
               delItem ={this.delItem}
-              delSub = {this.delSubItem}/>
+              delSub = {this.delSubItem}
+              findWeight = {this.findWeight}/>
             </React.Fragment>
             )
           }

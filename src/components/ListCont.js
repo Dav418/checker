@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HeadItem from './HeadChecker';
 import AdditionalItems from './CheckerItem';
 
+
 class ListCont extends Component{
     addItmStyle = () => {
         return {
@@ -12,7 +13,7 @@ class ListCont extends Component{
     };
     checkListStyle = () =>{
         return{
-            width : "300px",
+            width : "310px",
             float: "left",
             paddingLeft: 10,
             paddingRight: 10,
@@ -21,26 +22,31 @@ class ListCont extends Component{
     }
     render(){
         return (this.props.todo.map((item)=>(
-            <div style={this.checkListStyle()}>
-                <React.Fragment>
-                    <HeadItem 
-                    key = {item.id} 
-                    todo ={item} 
-                    markAsCompleted ={this.props.markAsCompleted}
-                    delItem = {this.props.delItem}></HeadItem>     
-                </React.Fragment>
-                {item.additionalItems.map((adItm)=>(
-                    <div style={this.addItmStyle()}>
-                        <AdditionalItems
-                        key={adItm.id}
-                        todo={adItm}
+            <React.Fragment>
+                <div style={this.checkListStyle()}>
+                    
+                    <React.Fragment>
+                        <HeadItem 
+                        key = {item.id} 
+                        todo ={item} 
                         markAsCompleted ={this.props.markAsCompleted}
-                        delSub = {this.props.delSub}/>
-                    </div>
-                ))}
-                
-               
-            </div>
+                        delItem = {this.props.delItem}
+                        findWeight = {this.props.findWeight}>
+                        </HeadItem>     
+                    </React.Fragment>
+                    {item.additionalItems.map((adItm)=>(
+                        <div style={this.addItmStyle()}>
+                            <AdditionalItems
+                            key={adItm.id}
+                            todo={adItm}
+                            markAsCompleted ={this.props.markAsCompleted}
+                            delSub = {this.props.delSub}
+                            ondvclick = {()=>{console.log("yes")}}/>
+                        </div>
+                    ))}
+                </div>
+            </React.Fragment>
+            
             
         )))
     }

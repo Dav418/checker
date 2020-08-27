@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddNew from './AddChecklist'
 import {Link} from 'react-router-dom';
 
 class Header extends Component{
@@ -7,8 +8,8 @@ class Header extends Component{
         return(
             <header style={headerStyle}>
                 <h1>Checker!</h1>
-                <p>A simple checklist application cos I dont like the other ones.</p>
-                <Link style= {linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link>
+                <p>Double click to edit</p>
+                <Link style= {linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link> | <AddNew/>
             </header>
         )
     }
