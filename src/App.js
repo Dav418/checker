@@ -66,12 +66,17 @@ class App extends Component {
         item.weight = weight;
       }
     })
-
     this.setState({
       items:[...this.setState.items = copyArr]
     }) 
-
   }
+  addNewList = title => {
+    const newItem = {id:uuid(), desc:title, weight:0, completed:false, additionalItems:[]}
+    
+    this.setState({ items: [...this.state.items, newItem] });
+
+    
+  };
 
   markAsCompleted = id =>{
     this.setState({
@@ -86,11 +91,10 @@ class App extends Component {
           return i;
         })
         return item;
-      }),
-
-      
+      }), 
     })
   }
+
   delItem = id =>{
     this.setState({
       items:[...this.state.items.filter(item=> item.id !==id )]
@@ -115,7 +119,7 @@ class App extends Component {
     <Router>
       <div className="App">
         <div className="cont">
-          <Header/>
+          <Header addNewList = {this.addNewList}/>
           <Route
           exact path="/"
           render={props =>( 
@@ -125,15 +129,13 @@ class App extends Component {
               markAsCompleted = {this.markAsCompleted}
               delItem ={this.delItem}
               delSub = {this.delSubItem}
-              findWeight = {this.findWeight}/>
+              findWeight = {this.findWeight}
+              />
             </React.Fragment>
-            )
-          }
-          >
+            )}>
           </Route>
           <Route path="/about">
             <About/>
-
           </Route>
         </div>
       </div>
