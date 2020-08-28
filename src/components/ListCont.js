@@ -31,7 +31,8 @@ class ListCont extends Component{
                         todo ={item} 
                         markAsCompleted ={this.props.markAsCompleted}
                         delItem = {this.props.delItem}
-                        findWeight = {this.props.findWeight}>
+                        findWeight = {this.props.findWeight}
+                        addSub ={this.props.addSub}>
                         </HeadItem>     
                     </React.Fragment>
                     {item.additionalItems.map((adItm)=>(

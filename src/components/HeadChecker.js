@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Popup from "reactjs-popup";
+
 
 
 
@@ -24,6 +26,14 @@ class HeadChecker extends Component {
       color: "white",
     }
   }
+
+  popupStyle =()=>{
+    return{
+      color: "black",
+      width:"100px",
+      height:"100px"
+    }
+  }
   getTextBoxStyle = () =>{
     return {
       border: "none",
@@ -42,7 +52,11 @@ class HeadChecker extends Component {
     return (
         <React.Fragment>
           <div style={this.headerStyle()}>
-          <p>Done? | Desc | Weight | Del</p>
+          <p>Done? | Desc | Weight | Del  
+            <Popup trigger={<button> Trigger</button>} position="right center" >
+            <div style={this.popupStyle()}>Popup content here !!</div>
+            </Popup> 
+          </p>
           </div>
           
           <div style = {this.getStyle()}>

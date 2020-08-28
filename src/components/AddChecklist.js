@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Popup from "reactjs-popup";
 
 class AddChecklist extends Component{
     
@@ -22,36 +23,33 @@ class AddChecklist extends Component{
         this.setState({addNew : !stateAddNew})
     }
     render(){
-        const {addNew} = this.state
-        if(!addNew){
-            return(<button onClick={this.openAddNew.bind(this)}>Create new</button>)
-        }else{
-            return (
-                <React.Fragment>
-                    <form onSubmit={this.onSubmit} 
-                    //style={{ display: 'flex' }}
-                    >
-                    <input 
-                    type="text" 
-                    name="title" 
-                    placeholder="Add Todo ..." 
-                    value={this.state.title}
-                    onChange={this.onChange}
-                    />
-                    <input 
-                    type="submit" 
-                    value="Submit" 
-                    className="btn"
-                    //style={{flex: '1'}}
-                    />
-                </form>
-                    <button onClick={this.openAddNew.bind(this)}>x</button>
-                </React.Fragment>
+        
+            return(<Popup trigger={<button> Add new checklist</button>} position="bottom center" >
+            <div 
+            //style={this.popupStyle()}
+            >
                 
-            )
-        }
+                <form onSubmit={this.onSubmit} 
+                //style={{ display: 'flex' }}
+                >
+                <input 
+                type="text" 
+                name="title" 
+                placeholder="Add Todo ..." 
+                value={this.state.title}
+                onChange={this.onChange}
+                autoComplete="off"
+                />
+                <input 
+                type="submit" 
+                value="Submit" 
+                className="btn"
+                //style={{flex: '1'}}
+                />
+            </form>
+        </div>
+            </Popup>)        
     }
-
 }
 
 AddChecklist.propTypes = {

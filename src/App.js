@@ -57,7 +57,7 @@ class App extends Component {
     let weight = 0;
     let copyArr = [...this.state.items];
     copyArr.forEach(item =>{
-      if (item.id == id){
+      if (item.id === id){
         console.log("found item!")
         console.log(item)
         item.additionalItems.forEach(adItm =>{
@@ -70,13 +70,23 @@ class App extends Component {
       items:[...this.setState.items = copyArr]
     }) 
   }
-  addNewList = title => {
-    const newItem = {id:uuid(), desc:title, weight:0, completed:false, additionalItems:[]}
-    
+  addNewList = d => {
+    const newItem = {id:uuid(), desc:d, weight:0, completed:false, additionalItems:[]}
     this.setState({ items: [...this.state.items, newItem] });
-
-    
   };
+
+  addSub = (parentID ,d, w) =>{
+    const newSub = {id:uuid(), desc: d, weight: w, completed:false}
+    let copyArr = [...this.state.items];
+    copyArr.forEach(item =>{
+      if (item.id === parentID){
+        item.additionalItems.push(newSub);
+      }
+    })
+    this.setState({
+      items:[...this.setState.items = copyArr]
+    })  
+  }
 
   markAsCompleted = id =>{
     this.setState({
@@ -130,6 +140,7 @@ class App extends Component {
               delItem ={this.delItem}
               delSub = {this.delSubItem}
               findWeight = {this.findWeight}
+              addSub = {this.addSub}
               />
             </React.Fragment>
             )}>
