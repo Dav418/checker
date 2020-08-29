@@ -1,41 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Popup from "reactjs-popup";
-
+import "./buttonCSS.css";
 class AddChecklist extends Component{
-    
-   
-        // init state
-        state = {
-          addNew: false,
-          title:''
-        }
-        onSubmit = (e) => {
-            e.preventDefault();
-            console.log(this.props)
+    state = {
+        title:''
+    }
+    onSubmit = (e) => {
+        e.preventDefault();
+        if(this.state.title !== ""){
             this.props.addNewList(this.state.title);
             this.setState({ title: '' });
-          }
+        }else{
+            alert("Cyka blet cant be empty")
+        }
+       
+    }
         
-          onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-    openAddNew = ()=>{
-        const stateAddNew = this.state.addNew;
-        this.setState({addNew : !stateAddNew})
+    onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+    popupStyle =()=>{
+        return{
+            backgroundColor :"#eae0c2"
+        }
     }
     render(){
         
-            return(<Popup trigger={<button> Add new checklist</button>} position="bottom center" >
-            <div 
-            //style={this.popupStyle()}
-            >
-                
+            return(
+            <Popup contentStyle={this.popupStyle()} trigger={<button className="buttonStyle" style={{fontSize:"20px"}}> Add new checklist</button>} position="bottom center" >
+                <div 
+                //style={this.popupStyle()}
+                > 
                 <form onSubmit={this.onSubmit} 
                 //style={{ display: 'flex' }}
                 >
                 <input 
                 type="text" 
                 name="title" 
-                placeholder="Add Todo ..." 
+                placeholder="Title..." 
                 value={this.state.title}
                 onChange={this.onChange}
                 autoComplete="off"
@@ -48,7 +49,7 @@ class AddChecklist extends Component{
                 />
             </form>
         </div>
-            </Popup>)        
+    </Popup>)        
     }
 }
 

@@ -58,12 +58,14 @@ class App extends Component {
     let copyArr = [...this.state.items];
     copyArr.forEach(item =>{
       if (item.id === id){
-        console.log("found item!")
-        console.log(item)
+        console.log("Calculating the weight of " + item.desc)
         item.additionalItems.forEach(adItm =>{
+          console.log(adItm.weight)
           weight += adItm.weight;
         })
         item.weight = weight;
+
+        console.log("it is " + item.weight)
       }
     })
     this.setState({
@@ -76,6 +78,7 @@ class App extends Component {
   };
 
   addSub = (parentID ,d, w) =>{
+    w = Number(w)
     const newSub = {id:uuid(), desc: d, weight: w, completed:false}
     let copyArr = [...this.state.items];
     copyArr.forEach(item =>{
@@ -86,6 +89,7 @@ class App extends Component {
     this.setState({
       items:[...this.setState.items = copyArr]
     })  
+    this.findWeight(parentID)
   }
 
   markAsCompleted = id =>{

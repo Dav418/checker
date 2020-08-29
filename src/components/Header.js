@@ -10,7 +10,7 @@ class Header extends Component{
             <header style={headerStyle}>
                 <AddNew addNewList = {this.props.addNewList}/>
                 <h1>Checker!</h1>
-                <p>Double click to edit</p>
+                <p>Oda oda oda oda oda oda oda oda oda oda oda</p>
                 <Link style= {linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link>
             </header>
         )
