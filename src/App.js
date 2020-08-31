@@ -55,10 +55,7 @@ class App extends Component {
     }
   ]};
 
-  findWeight = id =>{
-
-    auth.authenticate();
-    
+  findWeight = id =>{    
     let weight = 0;
     let copyArr = [...this.state.items];
     copyArr.forEach(item =>{
