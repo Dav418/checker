@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import List from "./components/ListCont";
+import List from "./components/checklist/ListCont";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from "./components/Header";
-import About from './components/About';
+import Header from "./components/layout/Header";
+import About from './components/layout/About';
 import {v4 as uuid} from 'uuid';
+
+import auth from './components/accounts/auth'
 class App extends Component {
 
   state ={
@@ -54,18 +56,17 @@ class App extends Component {
   ]};
 
   findWeight = id =>{
+
+    auth.authenticate();
+    
     let weight = 0;
     let copyArr = [...this.state.items];
     copyArr.forEach(item =>{
       if (item.id === id){
-        console.log("Calculating the weight of " + item.desc)
         item.additionalItems.forEach(adItm =>{
-          console.log(adItm.weight)
           weight += adItm.weight;
         })
         item.weight = weight;
-
-        console.log("it is " + item.weight)
       }
     })
     this.setState({
@@ -117,15 +118,19 @@ class App extends Component {
 
   delSubItem = id =>{
     let copyArr = [...this.state.items];
+    let paretnID = 0;
     copyArr.forEach(item => {
       var index = item.additionalItems.findIndex( adItm => {
         return adItm.id === id;
       })
-        if (index !== -1) item.additionalItems.splice(index, 1);
+        if (index !== -1){ item.additionalItems.splice(index, 1)
+        paretnID = item.id
+        };
       });
     this.setState({
       items:[...this.setState.items = copyArr]
     })  
+    this.findWeight(paretnID)
   }
 
   render(){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddNew from './AddChecklist'
+import AddNew from '../checklist/AddChecklist'
 import {Link} from 'react-router-dom';
 
 
