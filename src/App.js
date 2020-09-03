@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 import List from "./components/checklist/ListCont";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import Header from "./components/layout/Header";
 import About from './components/layout/About';
+import Accounts from './components/layout/AccountsCont'
+
+import Login from './components/accounts/Login'
+import Signup from './components/accounts/Signup'
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {v4 as uuid} from 'uuid';
 
-import auth from './components/accounts/auth'
+
 class App extends Component {
 
   state ={
@@ -153,6 +159,15 @@ class App extends Component {
           </Route>
           <Route path="/about">
             <About/>
+          </Route>
+          <Route path="/accounts">
+            <Accounts/>
+          </Route>
+          <Route exact path="/accounts/login">
+            <Login/>
+          </Route>
+          <Route exact path="/accounts/signup">
+            <Signup/>
           </Route>
         </div>
       </div>

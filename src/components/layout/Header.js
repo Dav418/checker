@@ -11,7 +11,7 @@ class Header extends Component{
                 <AddNew addNewList = {this.props.addNewList}/>
                 <h1>Checker!</h1>
                 <p>Oda oda oda oda oda oda oda oda oda oda oda</p>
-                <Link style= {linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link>
+                <Link style= {linkStyle} to="/">Home</Link> | <Link style={linkStyle} to="/about">About</Link> | <Link style={linkStyle} to="/accounts">Account</Link>
             </header>
         )
     }

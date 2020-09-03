@@ -15,7 +15,7 @@ const auth ={
         return false;
     },
 
-    authenticateFirstTime:()=>{
+    authenticateAfterLogin:()=>{
         const in30Minutes = 1/48;
         Cookies.set("access_token",true, {expires: in30Minutes} )
         Cookies.set('refresh_token', true, { expires: 7 })
